@@ -50,5 +50,41 @@ const App = () => {
     </div>
   );
 };
+const arto = {
+  name: 'Arto Hellas',
+  age: 35,
+  education: 'PhD',
 
+  greet: function() {
+    console.log('hello, my name is ' + this.name)
+  },
+  doAddittion: function(a, b){
+    console.log(a+b);
+  }
+}
+arto.growOlder = function() {
+  this.age += 1;
+}
+console.log(arto.age)
+arto.growOlder();
+console.log(arto.age)
+arto.greet()
+arto.doAddittion(10, arto.age)
+const referenceToAddition = arto.doAddittion
+referenceToAddition(10, 15);
+setTimeout(arto.greet.bind(arto),1000)
+
+class person{
+  constructor(name, age){
+    this.name = name
+    this.age = age
+  }
+  greet(){
+    console.log("hello my name is " + this.name)
+  }
+}
+const adam = new person("Adanm Ondra", 26)
+adam.greet()
+const janja = new person("janja", 24)
+janja.greet()
 export default App
