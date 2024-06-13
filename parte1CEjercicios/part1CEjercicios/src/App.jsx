@@ -15,7 +15,7 @@ const App = () => {
       <Estadisticas name = {"bueno"}text = {state.bueno}></Estadisticas>
       <Estadisticas name = {"neutral"}text = {state.neutral}></Estadisticas>
       <Estadisticas name = {"malo"} text = {state.malo}></Estadisticas>
-      <Estadisticas name = {"Todos"} text = {total}></Estadisticas>
+      <Estadisticas name = {"todos"} text = {total}></Estadisticas>
       <Estadisticas name = {"promedio"} text = {total !==0 ?(state.bueno - state.malo) / total : 0 }></Estadisticas>
       <Estadisticas name = {"positivo"} text = {total !==0 ?(state.bueno * 100) / total : 0}></Estadisticas>
       </>)}
@@ -32,6 +32,8 @@ const Negritas = (props) => (
   <h1><strong >{props.text}</strong></h1>
 )
 const Estadisticas = (props) => (
-  <p>{props.name} {props.text}</p>
+  <tr>
+  <td><p>{props.name}</p></td><td><p>{props.text}</p></td>
+  </tr>
 )
 export default App
