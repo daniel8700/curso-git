@@ -13,9 +13,26 @@ import { useState } from 'react'
     setVotes(newVotes)
   }
 
+  const Negritas = (props) => (
+    <p><b><strong>{props.text}</strong></b></p>
+  )
+
 const Button = ({ onClick, text }) => (
   <button onClick={onClick}>{text}</button>
 )
+
+const MasVotos = (votes) =>{
+  let indiceMayor = 0;
+  let numeroMayor = votes[0];
+  votes.forEach((numero, indice)=>{
+    if(numero > numeroMayor){
+      numeroMayor = numero;
+      indiceMayor = indice;
+    }
+  });
+  console.log("indice mayor " + indiceMayor)
+  return indiceMayor;
+}
 
 const App = () => {
   const anecdotes = [
@@ -31,14 +48,18 @@ const App = () => {
 
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
-
+  const anecdotas = [MasVotos(votes)];
   
   return (
     <div>
+      <h1><Negritas text={"Anecdota del día"}></Negritas></h1>
       {anecdotes[selected]}      
       <p>votos acumulados {votes[selected]}</p>
-      <Button onClick={() => handleNext(anecdotes, setSelected)} text={"Siguiente comentario"}></Button>
       <Button onClick={() => handleVote(votes, selected, setVotes)} text= {"Votar"}></Button>
+      <Button onClick={() => handleNext(anecdotes, setSelected)} text={"Siguiente comentario"}></Button>      
+      <h2><Negritas text={"Anecdota con mas votos"}></Negritas></h2>
+      <p>{anecdotes[anecdotas]}</p>
+      <p>{votes[anecdotas]} votos</p>
     </div>
   )
 }
