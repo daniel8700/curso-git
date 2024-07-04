@@ -30,7 +30,7 @@ const MasVotos = (votes) =>{
       indiceMayor = indice;
     }
   });
-  console.log("indice mayor " + indiceMayor)
+  console.log("indice mayor",indiceMayor)
   return indiceMayor;
 }
 
