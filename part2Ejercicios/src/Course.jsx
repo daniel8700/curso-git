@@ -1,42 +1,45 @@
 const Course = (props) => {
-const { course } = props
-imprimir(course)
-    return(
-        <div>
-        <Name course={course}></Name>
-        <ul>
-             
-            {course.parts.map((parts) =>
-            <Parts parts={parts} key={parts.id}></Parts>
-        )}           
-        </ul>
-        
-        <Total course={course}></Total>
-        
-        </div>
-    )
-}
-
-const Parts = ({parts}) =>{
-    return(
-        <li>{parts.name} {parts.exercises}</li>
-    )
-}
-const Name = ({course}) => {
-    console.log(course.name);
-    return(
-    <h1><strong>{course.name}</strong></h1>
-    )
-}
-function imprimir(course){
-    const result = course.name
-    console.log(result);
+    const { course } = props;
+  
+    // Imprimir el arreglo de cursos (esto es opcional, solo para depuración)
+    function imprimir(course) {
+      const result = course.map((course) => course);
+      console.log(result);
     }
-
-    const Total = ({ course }) => {
-        const tot = course.parts.reduce((acc, part) => acc + part.exercises, 0);
-    return(
-    <p>Puntaje total: {tot}</p>
-    )
-}    
-export default Course
+  
+    return (
+      <div>
+        {course.map((singleCourse) => (            
+          <div key={singleCourse.id}>
+            <CourseName course={singleCourse} />
+            <ul>
+              {singleCourse.parts.map((parte) => (
+                <CoursePart key={parte.id} part={parte} />
+              ))}
+            </ul>
+            <TotalScore course={singleCourse} />
+          </div>
+        ))}
+      </div>
+    );
+  };
+  
+  const CoursePart = ({ part }) => {
+    return (
+      <li>
+        {part.name} ({part.exercises})
+      </li>
+    );
+  };
+  
+  const CourseName = ({ course }) => {
+    return <h1>{course.name}</h1>;
+  };
+  
+  const TotalScore = ({ course }) => {
+    const total = course.parts.reduce((acc, particion) => acc + particion.exercises, 0);
+    return <p>Puntaje total: {total}</p>;
+  };
+  
+  export default Course;
+  
