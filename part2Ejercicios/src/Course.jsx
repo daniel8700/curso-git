@@ -1,17 +1,14 @@
 const Course = (props) => {
     const { course } = props;
-  
     // Imprimir el arreglo de cursos (esto es opcional, solo para depuración)
-    function imprimir(course) {
-      const result = course.map((course) => course);
-      console.log(result);
-    }
+    console.log(props);
+    imprimir(course)
   
     return (
       <div>
         {course.map((singleCourse) => (            
           <div key={singleCourse.id}>
-            <CourseName course={singleCourse} />
+            <CourseName course={singleCourse} key={singleCourse.id} />
             <ul>
               {singleCourse.parts.map((parte) => (
                 <CoursePart key={parte.id} part={parte} />
@@ -23,7 +20,11 @@ const Course = (props) => {
       </div>
     );
   };
-  
+
+  function imprimir(course) {
+      const result = course.map((course) => course);
+      console.log(result);
+    }
   const CoursePart = ({ part }) => {
     return (
       <li>

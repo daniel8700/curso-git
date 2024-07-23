@@ -1,6 +1,6 @@
 import Course from "./Course"
 const App = () => {
-  const course = [
+  const hola = [
     {
       name: 'Half Stack application development',
       id: 1,
@@ -45,7 +45,7 @@ const App = () => {
     }
   ]
 
-  return <Course course={course} />
+  return <Course course={hola} />
 }
 
 export default App
